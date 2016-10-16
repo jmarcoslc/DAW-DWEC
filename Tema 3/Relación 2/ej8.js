@@ -1,22 +1,25 @@
-function lanzarDado(max=6) {
+function lanzarDado(max) {
 	return Math.floor(Math.random() * max) +1;
 }
 
 function simularTiradas(n_tiradas, n_dados) {
 	var ocurrencias = new Array();
 
-	for (let i=0; i<n_dados; i++) {
+	for (let i=0; i<n_dados*6-1; i++) {
 		ocurrencias.push(new Array());
 	}
 
 	for(let i=0; i<n_tiradas; i++) {
 		var sumatoria_dados = 0;
+		var resultado_dados = new Array();
 
 		for (let dado=0; dado<n_dados; dado++) {
-			sumatoria_dados += lanzarDado();
+			var lanzamiento_dado = lanzarDado(6);
+			resultado_dados.push(lanzamiento_dado);
+			sumatoria_dados += lanzamiento_dado;
 		}
 
-		ocurrencias[sumatoria_dados-2].push(dado1+"+"+dado2);
+		ocurrencias[sumatoria_dados-2].push(resultado_dados.join("+"));
 	}
 
 	return ocurrencias;
