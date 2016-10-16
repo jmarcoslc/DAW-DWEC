@@ -5,7 +5,7 @@ function lanzarDado(caras) {
 function simularTiradas(n_tiradas, n_dados, caras_dado) {
 	var ocurrencias = new Array();
 
-	for (let i=0; i<n_dados*caras_dado-1; i++) {
+	for (let i=0; i<=n_dados*caras_dado-n_dados; i++) {
 		ocurrencias.push(new Array());
 	}
 
