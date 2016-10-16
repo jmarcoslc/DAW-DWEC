@@ -1,11 +1,11 @@
-function lanzarDado(max) {
-	return Math.floor(Math.random() * max) +1;
+function lanzarDado(caras) {
+	return Math.floor(Math.random() * caras) +1;
 }
 
-function simularTiradas(n_tiradas, n_dados) {
+function simularTiradas(n_tiradas, n_dados, caras_dado) {
 	var ocurrencias = new Array();
 
-	for (let i=0; i<n_dados*6-1; i++) {
+	for (let i=0; i<n_dados*caras_dado-1; i++) {
 		ocurrencias.push(new Array());
 	}
 
@@ -14,7 +14,7 @@ function simularTiradas(n_tiradas, n_dados) {
 		var resultado_dados = new Array();
 
 		for (let dado=0; dado<n_dados; dado++) {
-			var lanzamiento_dado = lanzarDado(6);
+			var lanzamiento_dado = lanzarDado(caras_dado);
 			resultado_dados.push(lanzamiento_dado);
 			sumatoria_dados += lanzamiento_dado;
 		}
@@ -26,7 +26,7 @@ function simularTiradas(n_tiradas, n_dados) {
 }
 
 window.onload = function() {
-	var tiradas = simularTiradas(1000, 2);
+	var tiradas = simularTiradas(1000, 2, 6);
 	var html = "";
 
 	for (let i=0; i<tiradas.length; i++) {
