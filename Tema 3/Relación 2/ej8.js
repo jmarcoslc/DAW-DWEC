@@ -19,7 +19,7 @@ function simularTiradas(n_tiradas, n_dados, caras_dado) {
 			sumatoria_dados += lanzamiento_dado;
 		}
 
-		ocurrencias[sumatoria_dados-2].push(resultado_dados.join("+"));
+		ocurrencias[sumatoria_dados-n_dados].push(resultado_dados.join("+"));
 	}
 
 	return ocurrencias;
