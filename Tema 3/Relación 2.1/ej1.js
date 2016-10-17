@@ -36,8 +36,8 @@ window.onload = function() {
 	var arr = [1,2,5,789,20];
 	var arr_str = ["12345", "ads", "asdasdad", "askdgaskjdgsakjhda asdas ss"];
 
-	//document.getElementById("insert").innerHTML = largestNumber(arr);
-	//document.getElementById("insert").innerHTML = longestString(arr_str);
-	//document.getElementById("insert").innerHTML = evenNumbers(arr);
-	document.getElementById("insert").innerHTML = oddNumbers(arr);
+	document.getElementById("insert").innerHTML += largestNumber(arr) + "<br>";
+	document.getElementById("insert").innerHTML += longestString(arr_str) + "<br>";
+	document.getElementById("insert").innerHTML += evenNumbers(arr) + "<br>";
+	document.getElementById("insert").innerHTML += oddNumbers(arr) + "<br>";
 }
