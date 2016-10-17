@@ -109,9 +109,31 @@ function changeValues(arr, start, end, value) {
 	});*/
 }
 
+function names(arr, start_letter) {
+	var match = new Array();
+	var initials = new Array();
+
+	arr.forEach(function(item, index) {
+		if (item[0] == start_letter) {
+			match.push(item);
+		}
+
+		var initials_container = "";
+
+		item.split(" ").forEach(function(item) {
+			initials_container += item[0];
+		});
+
+		initials.push(initials_container);
+	});
+
+	return [match, initials];
+}
+
 window.onload = function() {
 	var arr = [1,2,5,789,20];
 	var arr_str = ["12345", "adasdasdasdasdasdasdsaasdasdsadsadasdsas", "asdasdad", "askdgaskjdgsakjhda asdas is"];
+	var arr_names = ["Mónica Daza", "Marcos Leyva", "Cristian Soria", "José Fernández"];
 	var joined = zipArrays(arr, arr_str);
 
 	document.getElementById("insert").innerHTML += largestNumber(arr) + "<br>";
@@ -128,4 +150,5 @@ window.onload = function() {
 	document.getElementById("insert").innerHTML += unchift(arr_str, "new word") + "<br>";
 	changeValues(arr_str, 1,2, "lalalal");
 	document.getElementById("insert").innerHTML += changeValues(arr_str, 1,2, "lalalal") + "<br>";
+	document.getElementById("insert").innerHTML += names(arr_names, "J") + "<br>";
 }	
