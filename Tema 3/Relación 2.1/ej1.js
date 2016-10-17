@@ -1,3 +1,31 @@
+/*
+Write examples with Arrays to solve the next problems using only Array methods (like iterators, etc...):
+
+a) find largest number
+
+b) find longest string
+
+c) find even numbers
+
+d) find odd numbers
+
+e) find words that contain 'is'
+
+f) assert all numbers are divisible by three
+
+g)  zip two arrays together
+
+h) sort joined array from smallest to largest
+
+i) remove the first word in the array
+
+j) place a new word at the start of the array
+
+k) replace some elements
+
+l) Over an array with names, find all entries whose firstname starts with 'J',  create projection combined of only the initials of the name and then sort alphabetically
+*/
+
 function largestNumber(arr) {
 	return arr.sort()[arr.length-1];
 }
@@ -68,6 +96,19 @@ function unchift(arr, word) {
 	return arr_2;
 }
 
+function changeValues(arr, start, end, value) {
+	for (let i=start; i<=end; i++) {
+		arr[i] = value;
+	}
+	/*arr.forEach(function(value, index) {
+		if (start <= index <= end) {
+			arr[index] = value
+		} else {
+			return;
+		}
+	});*/
+}
+
 window.onload = function() {
 	var arr = [1,2,5,789,20];
 	var arr_str = ["12345", "adasdasdasdasdasdasdsaasdasdsadsadasdsas", "asdasdad", "askdgaskjdgsakjhda asdas is"];
@@ -85,4 +126,6 @@ window.onload = function() {
 	}) + "<br>";
 	document.getElementById("insert").innerHTML += chift(arr_str) + "<br>";
 	document.getElementById("insert").innerHTML += unchift(arr_str, "new word") + "<br>";
+	changeValues(arr_str, 1,2, "lalalal");
+	document.getElementById("insert").innerHTML += changeValues(arr_str, 1,2, "lalalal") + "<br>";
 }	
