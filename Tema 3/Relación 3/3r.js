@@ -82,3 +82,7 @@ class Jugador() {
 		return this.ficha;
 	}
 }
+
+class ControladorJuego() {
+	
+}
