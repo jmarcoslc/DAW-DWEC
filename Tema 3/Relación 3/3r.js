@@ -1,5 +1,5 @@
-class Tablero3R() {
-	constructor() {
+class Tablero3R {
+	constructor(casillas_anch=3, casillas_alt=3) {
 		this.tablero = new Array();
 
 		for(let i=0; i<casillas_anch; i++) {
@@ -69,7 +69,7 @@ class Tablero3R() {
 	}
 }
 
-class Jugador() {
+class Jugador {
 	constructor(ficha) {
 		this.ficha = ficha;
 	}
@@ -83,6 +83,23 @@ class Jugador() {
 	}
 }
 
-class ControladorJuego() {
-	
+class Modelo {
+	constructor() {
+		this.tablero = new Tablero3R();
+		this.jugador = new Jugador();
+	}
+
+	/*get tablero() {
+		return this.tablero;
+	}
+
+	get jugador() {
+		return this.jugador;
+	}*/
+} 
+
+class Controlador {
+	constructor() {
+
+	}	
 }
