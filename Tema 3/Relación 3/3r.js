@@ -81,13 +81,20 @@ class Jugador {
 	constructor(ficha) {
 		this.ficha = ficha;
 	}
+
+	/*set ficha(ficha) {
+		this.ficha = ficha;
+	}*/
+
+/*	get ficha() {
+		return this.ficha;
+	}*/
 }
 
 class Modelo {
 	constructor() {
 		this.tablero = new Tablero3R(3, 3);
-		this.jugador1 = new Jugador("X");
-		this.jugador2 = new Jugador("O");
+		this.jugadores = [new Jugador("X"), new Jugador("O")];
 	}
 } 
 
@@ -95,10 +102,28 @@ class Controlador {
 	constructor(modelo) {
 		this.modelo = modelo;
 		this.vista = new Vista(this);
+		this.turno = 0;
 	}
 
 	insertarFicha(fila, columna) {
-		this.modelo.tablero
+		if (this.turno != -1 || this.modelo.tablero.casillaDisponible(fila, columna)) {
+			this.modelo.tablero.insertarFicha(fila, columna, self.modelo.jugadores[this.turno].ficha);
+
+			if (this.modelo.tablero.comprobarGanador(self.modelo.jugadores[this.turno].ficha)) {
+				this.vista.anunciarGanador(this.turno);
+				this.turno = -1;
+			} else {
+				this.pasarTurno();
+			}
+		}
+	}
+
+	pasarTurno() {
+		if (this.turno == 0) {
+			this.turno = 1;
+		} else {
+			this.turno = 0;
+		}
 	}
 }
 
@@ -108,6 +133,10 @@ class Vista {
 
 		this.pintarTabla(3, 3);
 		this.addListeners();
+	}
+
+	anunciarGanador(n_jugador) {
+		document.getElementById("insert").innerHTML += "<h2 id='ganador'> Ha ganado Jugador " + n_jugador + "</h2>";
 	}
 
 	addListeners() {
