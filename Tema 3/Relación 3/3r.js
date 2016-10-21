@@ -69,7 +69,7 @@ class Tablero3R {
 
 	ganadorCruzado(ficha) {
 		if ((this.tablero[0][0] == ficha && this.tablero[1][1] == ficha && this.tablero[2][2] == ficha) || 
-			(this.tablero[0][2] == ficha && this.tablero[1][1] == ficha && this.tablero[1][1] == ficha)) {
+			(this.tablero[0][2] == ficha && this.tablero[1][1] == ficha && this.tablero[2][0] == ficha)) {
 			return true;
 		}
 
@@ -106,8 +106,10 @@ class Controlador {
 	}
 
 	insertarFicha(fila, columna) {
-		if (this.turno != -1 || this.modelo.tablero.casillaDisponible(fila, columna)) {
+		var lala = this.modelo.tablero.casillaDisponible(fila, columna);
+		if (this.modelo.tablero.casillaDisponible(fila, columna) || this.turno != -1) {
 			this.modelo.tablero.insertarFicha(fila, columna, this.modelo.jugadores[this.turno].ficha);
+			this.vista.insertarFicha(fila, columna, this.modelo.jugadores[this.turno].ficha);
 
 			if (this.modelo.tablero.comprobarGanador(this.modelo.jugadores[this.turno].ficha)) {
 				this.vista.anunciarGanador(this.turno);
@@ -153,6 +155,18 @@ class Vista {
 		this.controlador.insertarFicha(celda[0], celda[1]);
 	}
 
+	insertarFicha(fila, columna, ficha) {
+		var tds = document.getElementsByTagName("td");
+
+		for (let td=0; td<tds.length; td++) {
+			var atr = tds[td].getAttribute("c").split(",");
+
+			if (atr[0] == fila && atr[1] == columna) {
+				tds[td].innerHTML = ficha;
+			}
+		}
+	}
+
 	pintarTabla(filas, columnas) {
 		var html = "<table id='raya3'>";
 
@@ -173,8 +187,7 @@ class Vista {
 }
 
 window.onload = function() {
-	var modelo = new Modelo();
-	var controlador = new Controlador(modelo);
+	var controlador = new Controlador();
 	//var vista = new Vista(controlador);
 	//controlador.vista = vista;
 }
