@@ -24,7 +24,7 @@ class Tablero3R {
 	}
 
 	comprobarGanador(ficha) {
-		return ganadorHorizontal(ficha) || ganadorVertical(ficha) || ganadorCruzado(ficha);
+		return this.ganadorHorizontal(ficha) || this.ganadorVertical(ficha) || this.ganadorCruzado(ficha);
 	}
 
 	ganadorHorizontal(ficha) {
@@ -32,7 +32,7 @@ class Tablero3R {
 
 		for (let i=0; i<this.tablero.length; i++) {
 			for (let j=0; j<this.tablero[i].length; j++) {
-				if (tablero[i][j] == ficha) {
+				if (this.tablero[i][j] == ficha) {
 					consecutivas++;
 				} else {
 					consecutivas = 0;
@@ -51,8 +51,8 @@ class Tablero3R {
 		var consecutivas = 0;
 
 		for (let j=0; j<this.tablero.length; j++) {
-			for (let i=0; i<this.tablero[i].length; i++) {
-				if (tablero[i][j] == ficha) {
+			for (let i=0; i<this.tablero[j].length; i++) {
+				if (this.tablero[i][j] == ficha) {
 					consecutivas++;
 				} else {
 					consecutivas = 0;
@@ -100,16 +100,16 @@ class Modelo {
 
 class Controlador {
 	constructor(modelo) {
-		this.modelo = modelo;
+		this.modelo = new Modelo();
 		this.vista = new Vista(this);
 		this.turno = 0;
 	}
 
 	insertarFicha(fila, columna) {
 		if (this.turno != -1 || this.modelo.tablero.casillaDisponible(fila, columna)) {
-			this.modelo.tablero.insertarFicha(fila, columna, self.modelo.jugadores[this.turno].ficha);
+			this.modelo.tablero.insertarFicha(fila, columna, this.modelo.jugadores[this.turno].ficha);
 
-			if (this.modelo.tablero.comprobarGanador(self.modelo.jugadores[this.turno].ficha)) {
+			if (this.modelo.tablero.comprobarGanador(this.modelo.jugadores[this.turno].ficha)) {
 				this.vista.anunciarGanador(this.turno);
 				this.turno = -1;
 			} else {
@@ -143,7 +143,7 @@ class Vista {
 		var tds = document.getElementsByTagName("td");
 
 		for (let td=0; td<tds.length; td++) {
-			tds[td].addEventListener("click", this.casillaPinchada);
+			tds[td].addEventListener("click", (e)=>this.casillaPinchada(e));
 		}
 	}
 
@@ -175,4 +175,6 @@ class Vista {
 window.onload = function() {
 	var modelo = new Modelo();
 	var controlador = new Controlador(modelo);
+	//var vista = new Vista(controlador);
+	//controlador.vista = vista;
 }
