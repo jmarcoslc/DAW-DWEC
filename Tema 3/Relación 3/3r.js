@@ -15,6 +15,20 @@ class Tablero3R {
 		this.tablero[fila][columna] = ficha;
 	}
 
+	casillasLibres() {
+		var casillas_libres = 0;
+
+		for (let i=0; i<this.tablero.length; i++) {
+			for (let j=0; j<this.tablero[i].length; j++) {
+				if (this.tablero[i][j] == "") {
+					casillas_libres += 1;
+				}
+			}
+		}
+
+		return casillas_libres;
+	}
+
 	casillaDisponible(fila, columna) {
 		if (this.tablero[fila][columna] == "") {
 			return true;
@@ -106,14 +120,15 @@ class Controlador {
 	}
 
 	insertarFicha(fila, columna) {
-		var lala = this.modelo.tablero.casillaDisponible(fila, columna);
-		if (this.modelo.tablero.casillaDisponible(fila, columna) || this.turno != -1) {
+		if (this.modelo.tablero.casillaDisponible(fila, columna) && this.turno != -1) {
 			this.modelo.tablero.insertarFicha(fila, columna, this.modelo.jugadores[this.turno].ficha);
 			this.vista.insertarFicha(fila, columna, this.modelo.jugadores[this.turno].ficha);
 
 			if (this.modelo.tablero.comprobarGanador(this.modelo.jugadores[this.turno].ficha)) {
 				this.vista.anunciarGanador(this.turno);
 				this.turno = -1;
+			} else if (this.modelo.tablero.casillasLibres() == 0) {
+			this.vista.anunciarEmpate();
 			} else {
 				this.pasarTurno();
 			}
@@ -139,6 +154,10 @@ class Vista {
 
 	anunciarGanador(n_jugador) {
 		document.getElementById("insert").innerHTML += "<h2 id='ganador'> Ha ganado Jugador " + n_jugador + "</h2>";
+	}
+
+	anunciarEmpate() {
+		document.getElementById("insert").innerHTML += "<h2 id='ganador'>Empate :(</h2>";
 	}
 
 	addListeners() {
