@@ -95,14 +95,6 @@ class Jugador {
 	constructor(ficha) {
 		this.ficha = ficha;
 	}
-
-	/*set ficha(ficha) {
-		this.ficha = ficha;
-	}*/
-
-/*	get ficha() {
-		return this.ficha;
-	}*/
 }
 
 class Modelo {
