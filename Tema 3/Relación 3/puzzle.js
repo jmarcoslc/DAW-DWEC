@@ -9,6 +9,8 @@ class Tablero {
 				this.tablero[i][j] = [i+","+j, false];
 			} 
 		}
+
+		this.asignarBlanca();
 	}
 
 	moverFicha(pos_ini, pos_fin) {
@@ -48,8 +50,9 @@ class Tablero {
 	asignarBlanca() {
 		var randX = Math.floor(Math.random() * this.tablero.length);
 		var randY = Math.floor(Math.random() * this.tablero[0].length);
+		console.log(randX, randY);
 
-		this.tablero[randX, randY][1] = true;
+		this.tablero[randX][randY][1] = true;
 	}
 
 	desordenar() {
@@ -129,8 +132,13 @@ class Vista {
 				aux.push(casilla.getAttribute("id"));
 				aux.push(casilla.style.backgroundPosition);
 
-				casilla.setAttribute("id", tablero_desordenado[i][j][0]);
-				casilla.style.backgroundPosition = document.getElementById(tablero_desordenado[i][j][0]).style.backgroundPosition;
+				if (tablero_desordenado[i][j][1]) {
+					casilla.setAttribute("id", tablero_desordenado[i][j][0]);
+					casilla.style.backgroundImage = "none";
+				} else {
+					casilla.setAttribute("id", tablero_desordenado[i][j][0]);
+					casilla.style.backgroundPosition = document.getElementById(tablero_desordenado[i][j][0]).style.backgroundPosition;
+				}
 
 				document.getElementById(tablero_desordenado[i][j][0]).style.backgroundPosition = aux[1];
 				document.getElementById(tablero_desordenado[i][j][0]).setAttribute("id", aux[0]);
