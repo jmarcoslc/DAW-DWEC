@@ -66,7 +66,7 @@ class Tablero {
 
 		for (let i=0; i<this.tablero.length; i++) {
 			for (let j=0; j<this.tablero[i].length; j++, indice++) {
-				this.tablero[i][j] = arr_tablero[i_a];
+				this.tablero[i][j] = arr_tablero[indice];
 			}
 		}
 
@@ -94,8 +94,12 @@ class Controlador {
 		this.vista.desordenar(tablero_desordenado);
 	}
 
-	asignarBlanca() {
+	moverFicha(pos) {
+		return "";
+	}
 
+	asignarBlanca() {
+		return "";
 	}
 
 	casillaPinchada(pos) {
@@ -116,9 +120,20 @@ class Vista {
 	}
 
 	desordenar(tablero_desordenado) {
+
 		for (let i=0; i<tablero_desordenado.length; i++) {
-			for (let j=0; j<tablero_desordenado[i]) {
-				document.getElementById(i+","+j);
+			for (let j=0; j<tablero_desordenado[i].length; j++) {
+				var casilla = document.getElementById(i+","+j);
+				var aux = new Array();
+
+				aux.push(casilla.getAttribute("id"));
+				aux.push(casilla.style.backgroundPosition);
+
+				casilla.setAttribute("id", tablero_desordenado[i][j][0]);
+				casilla.style.backgroundPosition = document.getElementById(tablero_desordenado[i][j][0]).style.backgroundPosition;
+
+				document.getElementById(tablero_desordenado[i][j][0]).style.backgroundPosition = aux[1];
+				document.getElementById(tablero_desordenado[i][j][0]).setAttribute("id", aux[0]);
 			}
 		}
 	}
@@ -134,7 +149,7 @@ class Vista {
 	casillaPinchada(event) {
 		var celda = event.target.getAttribute("id");
 
-		this.controlador.insertarFicha(celda);
+		this.controlador.moverFicha(celda);
 	}
 
 	pintarPuzzle() {
