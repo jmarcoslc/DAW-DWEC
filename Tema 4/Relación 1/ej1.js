@@ -1,26 +1,36 @@
-function mayorDe4() {
-	var numeros = new Array();
-	var mayor = null;
+function aler() {
+	alert("Lalalala");
+}
 
-	for (let i=0; i < 4; i++) {
-		let numero_introducido;
-		do {
-			numero_introducido = parseInt(window.prompt("Introduce un número"));
-		} while (!Number.isInteger(numero_introducido));
+function moveListener() {
+	document.getElementById("mm").onmousemove = function(e){leerCoords(e)};
+}
 
-		numeros.push(numero_introducido);
-	}
-	mayor = numeros[numeros.length-1];
+function leerCoords(c){
+	var x = c.clientX;
+	var y = c.clientY;
 
-	for (let i=0; i < numeros.length-1; i++) {
-		if (numeros[i] > mayor) {
-			mayor = numeros[i];
+	document.getElementById("insert").innerHTML = x+","+y;
+}
+
+function pintarTabla(filas, columnas) {
+	var html = "<table style='border: 1px solid #333'>";
+
+	for (let i=0; i<filas; i++) {
+		html += "<tr>";
+
+		for (let j=0; j<columnas; j++) {
+			html += "<td style='width: 2px; height: 2px;'></td>";
 		}
+
+		html += "</tr>";
 	}
 
-	return mayor;
+	html += "</table>";
+
+	document.getElementById("insert").innerHTML = html;
 }
 
 window.onload = function() {
-	document.write(mayorDe4());
+	pintarTabla(80, 80);
 }
