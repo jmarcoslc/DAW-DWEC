@@ -14,13 +14,13 @@ function leerCoords(c){
 }
 
 function pintarTabla(filas, columnas) {
-	var html = "<table style='border: 1px solid #333'>";
+	var html = "<table style='border-collapse:collapse; border: 1px solid #333'>";
 
 	for (let i=0; i<filas; i++) {
 		html += "<tr>";
 
 		for (let j=0; j<columnas; j++) {
-			html += "<td style='width: 2px; height: 2px;'></td>";
+			html += "<td style='width: 4px; height: 4px;'></td>";
 		}
 
 		html += "</tr>";
@@ -31,6 +31,67 @@ function pintarTabla(filas, columnas) {
 	document.getElementById("insert").innerHTML = html;
 }
 
+function resetTabla() {
+	var todas_celdas = document.getElementsByTagName("td");
+
+	for (let i=0; i<todas_celdas.length; i++) {
+		todas_celdas[i].style.backgroundColor = "#FFF";
+	}
+}
+
+function listenersACT4() {
+	window.addEventListener("keydown", function(e){
+		if (e.key == "r") {
+			resetTabla();
+		}
+	});
+
+	var todas_celdas = document.getElementsByTagName("td");
+
+	for (let i=0; i<todas_celdas.length; i++) {
+		todas_celdas[i].addEventListener("mousemove", function(e){colorear(e)});
+	}
+}
+
+function colorear(e) {
+	if (e.ctrlKey) {
+		e.target.style.backgroundColor = "blue";
+	} else if (e.shiftKey) {
+		e.target.style.backgroundColor = "red";
+	} else if (e.altKey) {
+		e.target.style.backgroundColor = "white";
+	}
+}
+
+var offsetX = 0;
+var offsetY = 0;
+var moverim = false;
+var primera_vez = true;
+
+function moverImagen() {
+	document.getElementById("imgMover").addEventListener("click", function(e){
+		if (!moverim) {
+			moverim = true;
+			offsetX = e.offsetX;
+			offsetY = e.offsetY;
+			document.getElementById("insert2").innerHTML = e.clientX+","+e.clientY;
+		} else {
+			moverim = false;
+		}
+	});
+
+	document.getElementById("moverimg").addEventListener("mousemove", function(p){
+		if (moverim) {
+			document.getElementById("insert").innerHTML = p.clientX+","+p.clientY;
+
+			document.getElementById("imgMover").style.left = p.clientX - offsetX;
+			document.getElementById("imgMover").style.top = p.clientY - offsetY;
+		}
+	});
+}
+
 window.onload = function() {
-	pintarTabla(80, 80);
+	/*pintarTabla(200, 200);
+	listenersACT4();*/
+	moverImagen();
 }
