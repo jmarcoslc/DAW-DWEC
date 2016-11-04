@@ -63,13 +63,58 @@ function colorear(e) {
 	}
 }
 
-var offsetX = 0;
+var offsetX = 0
 var offsetY = 0;
 var moverim = false;
 var primera_vez = true;
+var moverims = new Array();
+
+class imagenMovible {
+	constructor(id_imagen, wrapper) {
+		this.id_imagen = id_imagen;
+		this.moverim = false;
+		this.offsetX = 0;
+		this.offsetY = 0;
+		this.wrapper = wrapper;
+
+		this.addEventClick();
+		this.addEventMouseMove();
+	}
+
+	addEventClick() {
+		var esto = this;
+		document.getElementById(this.id_imagen).addEventListener("click", function(e){
+			if (!esto.moverim) {
+				esto.moverim = true;
+				esto.offsetX = e.offsetX;
+				esto.offsetY = e.offsetY;
+			} else {
+				esto.moverim = false;
+			}
+		});
+	}
+
+	addEventMouseMove() {
+		var esto = this;
+		document.getElementById(this.wrapper).addEventListener("mousemove", function(e){
+		e.preventDefault();
+			if (esto.moverim) {
+				document.getElementById(esto.id_imagen).style.left = e.clientX - esto.offsetX;
+				document.getElementById(esto.id_imagen).style.top = e.clientY - esto.offsetY;
+			}
+		});
+	}
+}
 
 function moverImagen() {
-	document.getElementById("imgMover").addEventListener("click", function(e){
+	var imagenes = document.images;
+
+	for (let i=0; i<imagenes.length; i++) {
+		moverims.push(new imagenMovible(imagenes[i].id, "moverimg"));
+	}
+
+	/*document.getElementById("imgMover").addEventListener("mousedown", function(e){
+
 		if (!moverim) {
 			moverim = true;
 			offsetX = e.offsetX;
@@ -81,13 +126,14 @@ function moverImagen() {
 	});
 
 	document.getElementById("moverimg").addEventListener("mousemove", function(p){
+		p.preventDefault();
 		if (moverim) {
 			document.getElementById("insert").innerHTML = p.clientX+","+p.clientY;
 
 			document.getElementById("imgMover").style.left = p.clientX - offsetX;
 			document.getElementById("imgMover").style.top = p.clientY - offsetY;
 		}
-	});
+	});*/
 }
 
 window.onload = function() {
