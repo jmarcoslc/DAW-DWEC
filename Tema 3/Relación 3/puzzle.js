@@ -224,5 +224,5 @@ class Vista {
 }
 
 window.onload = function() {
-	var controlador = new Controlador(3, 6, "puzzle_bg.jpg");
+	var controlador = new Controlador(3, 3, "puzzle_bg.jpg");
 }
