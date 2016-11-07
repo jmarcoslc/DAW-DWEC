@@ -1,0 +1,35 @@
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+a, a:visited {
+	color: blue;
+}
+
+#wrapper {
+	padding: 20px;
+	height: 628px;
+}
+
+#cambiarTema {
+	font-size: 24px;
+}
+
+#cambiarTema ul {
+	padding: 0px;
+	margin: 0px;
+} 
+
+#cambiarTema ul > li {
+	display: inline-block;
+}
+
+#cambiarTema ul > li > a {
+	text-decoration: none;
+}
+
+.ocultarparrafosimple {
+	font-weight: bold;
+	display: none;
+}

@@ -3,14 +3,27 @@
 		<meta charset="utf-8">
 		<title>Relación 2</title>
 		<script type="text/javascript" src="cambiador.js"></script>
-		<style type="text/css">
-			
-		</style>
+		<link id="pageStyle" rel="stylesheet" type="text/css" href="estilo.css">
 	</head>
 	<body>
 		<noscript>
 			<p>No tienes javascript habilitado</p>
 		</noscript>
-		<div id="insert"></div>
+		<div id="margenIzquierdo"></div>
+		<div id="wrapper">
+			<div id="cambiarTema">
+				<ul>
+					<li><a id="temaNormal" href="#">Tema normal</a></li>
+					<li><a id="temaMinimalista" href="#">Tema minimalista</a></li>
+				</ul>
+			</div>
+			<h1>Pagina de ejemplo</h1>
+			<p>En esta pagina vamos a comprobar lo fácil que es aplicar estilos mediante CSS a un dopcumento seleccionado.</p>
+			<p>La idea es que al seleccionar un estilo éste permanezca siempre igual para el usuario. Hasta ahora no hemos visto como hacerlo, ¿Se te ocurre cómo podemos hacerlo?</p>
+			<p>Utilizando CSS podemos incluso ocultar partes del sitio.<br/><span class="ocultarparrafosimple">Este parrafo debe ser solo visible en el tema normal.</span></p>
+			<p class="marco">Esto está dentro de un marco</p>
+		</div>
+		<div style="clear: both;"></div>
+		<div id="insert"><button id="cambiarHoja" type="button">Cambiar hoja de estilo</button></div>
 	</body>
 </html>
