@@ -30,11 +30,8 @@ function checkFormFieldLength(form_field_id, min, max, highlight=true) {
 		document.getElementById(form_field_id).style.color = "#FFF";
 		document.getElementById(form_field_id).value = "";
 		document.getElementById(form_field_id).placeholder = "Error: must be " + min + "-" + max + "characters";
-	} else {
-		document.getElementById(form_field_id).style.backgroundColor = "white";
-		document.getElementById(form_field_id).style.color = "#000";
 	}
-
+	
 	return sucess;
 }
 
