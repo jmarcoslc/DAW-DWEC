@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Relación 3</title>
+		<script type="text/javascript" src="rel3.js"></script>
+		<style type="text/css">
+			.formgroup {
+				clear: both;
+				display: block;
+				padding: 10px;
+			}
+			.lab {
+				width: 110px;
+				display: inline-block;
+			}
+			.lab:last-child {
+				vertical-align: top;
+			}
+			textarea {
+				width: 300px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<noscript>
+			<p>No tienes javascript habilitado</p>
+		</noscript>
+			<form id="myform" action="" method="post">
+				<span class="formgroup">
+					<span class="lab">User ID: </span><input size="30" id="uid" type="text" name="userid" placeholder="Enter a user ID">
+				</span>
+				<span class="formgroup">
+					<span class="lab">Password: </span><input size="30" id="pass" type="password" name="pass" placeholder="Enter a password">
+				</span>
+				<span class="formgroup">
+					<span class="lab">Name: </span><input size="30" id="name" type="text" name="name" placeholder="Enter your name">
+				</span>
+				<span class="formgroup">
+					<span class="lab">Address: </span><input size="30" id="address" type="text" name="address" placeholder="Enter your address">
+				</span>
+				<span class="formgroup">
+					<span class="lab">Country: </span><select id="country">
+					<option value="-" selected>-</option>
+					<option value="Spain">Spain</option>
+					<option value="United States">United States</option>
+					<option value="United Kingdom">United Kingdom</option>
+					<option value="Italy">Italy</option>
+					<option value="Germany">Germany</option>
+					<option value="France">France</option></select>
+				</span>
+				<span class="formgroup">
+					<span class="lab">ZIP Code: </span><input size="30" id="zip" type="text" name="zip" placeholder="Enter your zip code">
+				</span>
+				<span class="formgroup">
+					<span class="lab">Email: </span><input size="30" id="email" type="text" name="email" placeholder="Enter your email">
+				</span>
+				<span class="formgroup">
+					<span class="lab">Sex: </span><label id="lab-sex-male"><input id="sex-male" type="radio" name="sex" value="male">Male</label> <label id="lab-sex-female"><input id="sex-female" type="radio" name="sex" value="female">Female</label>
+				</span>
+				<span class="formgroup">
+					<span class="lab">Language: </span><label id="lab-lang-en"><input id="lang-en" type="checkbox" name="lang" value="english">English</label> <label id="lab-lang-nen"><input id="lang-nen" type="checkbox" name="lang" value="nonenglish">Non English</label>
+				</span>
+				<span class="formgroup">
+					<span class="lab">About: </span><textarea name="about" ></textarea>
+				</span>
+				<input type="submit" id="submit" value="Send">
+			</form>
+		<div id="insert"></div>
+	</body>
+</html>
