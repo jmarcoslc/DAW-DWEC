@@ -23,7 +23,7 @@ function listeners() {
 
 function checkFormFieldLength(form_field_id, min, max, highlight=true) {
 	var form_field = document.getElementById(form_field_id);
-	var sucess = form_field.value.length >= min && form_field.vallue.length <= max;
+	var sucess = form_field.value.length >= min && form_field.value.length <= max;
 
 	if (!sucess && highlight) {
 		document.getElementById(form_field_id).style.backgroundColor = "#EF6464";
