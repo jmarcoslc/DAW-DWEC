@@ -28,6 +28,16 @@ function anadirElementos() {
 	lista.appendChild(elemento);
 }
 
+function anadirArchivo() {
+	var formulario = document.getElementById("formulario");
+	var input = document.createElement("input");
+	input.setAttribute("type", "file");
+
+	formulario.appendChild(input);
+
+
+}
+
 window.onload = function() {
 	contarElementos();
 }
