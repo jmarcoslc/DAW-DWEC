@@ -4,11 +4,14 @@ class Juego {
 		this.alto = alto;
 		this.n_bolas = bolas;
 		this.bolas = new Array();
+		this.base = null;
 	}
 
 	start() {
 		this.pintarSVG();
-		this.meterBolas();
+		this.pintarBolas();
+		this.pintarBase();
+		this.asignarEventos();
 		this.loop();
 	}
 
@@ -16,16 +19,25 @@ class Juego {
 		var self = this;
 
 		setInterval(function() {
-			for (let i=0; self.bolas.length; i++) {
-				if (document.getElementById(i).getAttribute("cx") >= self.ancho || 
-					document.getElementById(i).getAttribute("cx") < 0 && self.bolas[i].vx < 0) {
+			for (let i=0; i<self.bolas.length; i++) {
+				//Colisión horizontal
+				if (self.bolas[i].x >= self.ancho || 
+					self.bolas[i].x < 0 && self.bolas[i].vx < 0) {
 					self.bolas[i].vx *= -1;
 				}
 
-				if (document.getElementById(i).getAttribute("cy") >= self.alto || 
-					document.getElementById(i).getAttribute("cy") < 0 && self.bolas[i].vy < 0) {
+				//Colisión vertical
+				if (self.bolas[i].y < 0 && self.bolas[i].vy < 0) {
 					self.bolas[i].vy *= -1;
-				} 
+				} else if (self.bolas[i].y >= self.alto) {
+					document.getElementById(i).style.display = "none";
+				}
+
+				//Colisión con la base
+				if (self.bolas[i].x >= self.base.x && self.bolas[i].x <= self.base.x + self.base.ancho &&
+					self.bolas[i].y >= self.base.y && self.bolas[i].y <= self.base.y + self.base.alto) {
+					self.bolas[i].vy *= -1;
+				}
 
 				var posx = self.bolas[i].x + self.bolas[i].vx;
 				var posy = self.bolas[i].y + self.bolas[i].vy;
@@ -39,9 +51,44 @@ class Juego {
 		}, 1000/60);
 	}
 
-	meterBolas() {
+	asignarEventos() {
+		this.listenerBase();
+	}
+
+	listenerBase() {
+		var self = this;
+
+		window.addEventListener("keydown", function(e) {
+			console.log(e.key, self.base.x);
+
+			if (e.key == "ArrowLeft") {
+				self.base.x -= self.base.vx;
+				document.getElementById("base").setAttribute("x", self.base.x);
+			} else if (e.key == "ArrowRight"){
+				self.base.x += self.base.vx;
+				document.getElementById("base").setAttribute("x", self.base.x);
+			}
+		});
+	}
+
+	pintarBase() {
+		this.base = new Base(Math.floor(this.ancho/2) - 75, this.alto - 15, 150, 15);
+
+		var base_grafica = document.createElementNS("http://www.w3.org/2000/svg", 
+				"rect");
+		base_grafica.setAttribute("width", this.base.ancho);
+		base_grafica.setAttribute("height", this.base.alto);
+		base_grafica.setAttribute("x", this.base.x);
+		base_grafica.setAttribute("y", this.base.y);
+		base_grafica.setAttribute("id", "base");
+		base_grafica.setAttribute("style", "fill:"+this.base.color+";");
+		this.svg.appendChild(base_grafica);
+	}
+
+	pintarBolas() {
 		var rand_vx;
 		var rand_vy;
+
 		for (let i=0; i<this.n_bolas; i++) {
 			rand_vx = Math.floor(Math.random() * 10 + 1);
 			rand_vy = Math.floor(Math.random() * 10 + 1);
@@ -68,6 +115,17 @@ class Juego {
 	}
 }
 
+class Base {
+	constructor(posx, posy, ancho, alto, color="#888") {
+		this.x = posx;
+		this.y = posy;
+		this.ancho = ancho;
+		this.alto = alto;
+		this.color = color;
+		this.vx = 20;
+	}
+}
+
 class Bola {
 	constructor(radio, vx, vy) {
 		this.x = radio;
@@ -91,6 +149,6 @@ class Bola {
 }
 
 window.onload = function() {
-	var juego = new Juego(700, 400, 15);
+	var juego = new Juego(700, 400, 1);
 	juego.start();
 }
