@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Relación 5</title>
+		<script type="text/javascript" src="rel5.js"></script>
+		<style type="text/css">
+			body {
+				font-family: Arial;
+				margin: 0px;
+				padding: 0px;
+				background-color: 
+			}
+			#controles {
+				background: #d4e4ef;
+				background: -moz-linear-gradient(top,  #d4e4ef 0%, #86aecc 100%);
+				background: -webkit-linear-gradient(top,  #d4e4ef 0%,#86aecc 100%);
+				background: linear-gradient(to bottom,  #d4e4ef 0%,#86aecc 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc',GradientType=0 );
+				width: 100%;
+				height: 40px;
+			}
+			#btn-anadir {
+				padding: 5px;
+				font-size: 28px;
+				cursor: pointer;
+			}
+			.posit {
+				background-color: yellow;
+				padding: 10px;
+				margin: 15px;
+				display: inline-block;
+				vertical-align: top;
+			}
+			.cerrar-posit {
+				float: right;
+				display: block;
+				cursor: pointer;
+			}
+			.cerrar-posit::after {
+				content: "X";
+			}
+			.posit-head::after {
+				content: "";
+				width: 0px;
+				height: 0px;
+				clear: both;
+				display: block;
+			}
+			.posit-head p {
+				float: left;
+				font-size: 18px;
+			}
+			textarea, input {
+				background-color: transparent;
+				border: 1px solid #AAA;
+				padding: 5px;
+			}
+			textarea {
+				width: 200px;
+				height: 150px;
+			}
+			input {
+				margin-bottom: 10px;
+				width: 180px;
+			}
+		</style>
+	</head>
+	<body>
+		<noscript>
+			<p>No tienes javascript habilitado</p>
+		</noscript>
+		<div id="marco">
+			<div id="controles">
+				<div id="btn-anadir" alt="Añadir nueva nota">+</div>
+			</div>
+			<div id="corcho">
+				
+			</div>
+		</div>
+		<div id="insert"></div>
+	</body>
+</html>

@@ -52,28 +52,13 @@ class Juego {
 
 				//Colisión con ladrillos
 				for (let n_ladrillo = 0; n_ladrillo<self.n_ladrillos; n_ladrillo++) {
-					/*if (self.bolas[i].colision(self.ladrillos[n_ladrillo]) && 
-						document.getElementById("ladrillo"+n_ladrillo).style.display != "none") {
-						self.impactos += 1;
-
-						var x = (self.ladrillos[n_ladrillo].x + self.ladrillos[n_ladrillo].ancho/2) - (self.bolas[i].x + self.bolas[i].r);
-						var y = (self.ladrillos[n_ladrillo].y + self.ladrillos[n_ladrillo].alto/2) - (self.bolas[i].y + self.bolas[i].r);
-
-						if (Math.abs(x) > Math.abs(y)) {
-							self.bolas[i].vx *= -1;
-						} else {
-							self.bolas[i].vy *= -1;
-						}
-
-						document.getElementById("ladrillo"+n_ladrillo).style.display = "none";
-					}*/
 
 					//Cálculo de los 8 puntos de impacto de la circunferenbola
 					if (document.getElementById("ladrillo"+n_ladrillo).style.display != "none") {
 						for (let grad=0; grad<360; grad+=45) {
 							var p_x = self.bolas[i].r * Math.cos(grad) + self.bolas[i].x;
 							var p_y = self.bolas[i].r * Math.cos(grad) + self.bolas[i].y;
-							console.log(grad);
+							//console.log(grad);
 
 							if (p_x >= self.ladrillos[n_ladrillo].x && p_x <= self.ladrillos[n_ladrillo].x + self.ladrillos[n_ladrillo].ancho &&
 								p_y >= self.ladrillos[n_ladrillo].y && p_y <= self.ladrillos[n_ladrillo].y + self.ladrillos[n_ladrillo].alto) {
@@ -92,9 +77,14 @@ class Juego {
 									case 315:
 									self.bolas[i].vx *= -1;
 									break;
+
+									self.impactos += 1;
 								}
 
 								document.getElementById("ladrillo"+n_ladrillo).style.display = "none";
+								if (self.impactos == self.n_ladrillos) {
+									clearInterval(inter);
+								}
 							}
 						}
 					}
