@@ -1,2 +1,0 @@
-<h1>Esto es una petición AJAX</h1>
-<p>Se está probando el envío de peticiones desde el servidor por medio de AJAX</p>
