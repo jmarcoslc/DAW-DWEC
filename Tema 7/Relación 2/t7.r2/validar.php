@@ -1,6 +1,6 @@
 <?php
-	header('Content-Type: text/html; charset=utf-8');
 	if ($_GET) {
+		header('Content-Type: text/html; charset=utf-8');
 		if (isset($_GET["fecha_nacimiento"])) {
 			$fecha_dividida = explode("-", $_GET["fecha_nacimiento"]);
 			$fecha_correcta = checkdate($fecha_dividida[0], $fecha_dividida[1], $fecha_dividida[2]);
@@ -31,35 +31,48 @@
 			}
 		}
 	} else if ($_POST) {
-		if (isset($_POST["fecha_nacimiento"])) {
-			$fecha_dividida = explode("/", $_POST["fecha_nacimiento"]);
-			$fecha_correcta = checkdate($fecha_dividida[0], $fecha_dividida[1], $fecha_dividida[2]);
+		header("Content-type: text/xml");
 
+		$xml = "<info>";
+
+		if (isset($_POST["fecha_nacimiento"])) {
+			$fecha_dividida = explode("-", $_POST["fecha_nacimiento"]);
+			$fecha_correcta = checkdate($fecha_dividida[0], $fecha_dividida[1], $fecha_dividida[2]);
+			$xml .= "<fecha>";
 			if ($fecha_correcta) {
-				echo "La fecha " . $_POST["fecha_nacimiento"] . " es correcta.<br>";
+				$xml .= "La fecha " . $_POST["fecha_nacimiento"] . " es correcta.";
 			} else {
-				echo "La fecha " . $_POST["fecha_nacimiento"] . " NO es correcta.<br>";
+				$xml .= "La fecha " . $_POST["fecha_nacimiento"] . " NO es correcta.";
 			}
+			$xml .= "</fecha>";
 		}
 
 		if (isset($_POST["codigo_postal"]) && strlen($_POST["codigo_postal"]) == 5) {
 			$codigo_correcto = true;
 
+			$xml .= "<codigoPostal>";
 			if ($codigo_correcto) {
-				echo "El código postal " . $_POST["codigo_postal"] . " es correcto.<br>";
+				$xml .= "El código postal " . $_POST["codigo_postal"] . " es correcto.";
 			} else {
-				echo "El código postal " . $_POST["codigo_postal"] . " NO es correcto.<br>";
+				$xml .= "El código postal " . $_POST["codigo_postal"] . " NO es correcto.";
 			}
+			$xml .= "</codigoPostal>";
 		}
 
-		if (isset($_POST["telefono"]) && strlen($_POST["telefono"]) == 9) {
-			$codigo_correcto = true;
+		if (isset($_POST["telefono"])) {
+			$codigo_correcto = strlen($_POST["telefono"]) == 9;
 
+			$xml .= "<telefono>";
 			if ($codigo_correcto) {
-				echo "El teléfono " . $_POST["telefono"] . " es correcto.";
+				$xml .= "El teléfono " . $_POST["telefono"] . " es correcto.";
 			} else {
-				echo "El teléfono " . $_POST["telefono"] . " NO es correcto.";
+				$xml .= "El teléfono " . $_POST["telefono"] . " NO es correcto.";
 			}
+			$xml .= "</telefono>";
 		}
+
+		$xml .= "</info>";
+
+		echo $xml;
 	}
 ?>

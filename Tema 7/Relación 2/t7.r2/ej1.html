@@ -1,0 +1,200 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Relación 5</title>
+		<script type="text/javascript" src="rel2.js"></script>
+		<style>
+			form {
+				padding: 10px;
+				border: 1px solid grey;
+				width: 500px;
+			}
+			.wrap {
+				display: block;
+				margin: 10px;
+			}
+			form label {
+				width: 150px;
+				display: inline-block;
+			}
+			@-webkit-keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			@-webkit-keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			@-moz-keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			@-ms-keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			@-moz-keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			@-webkit-keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			@-o-keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			@keyframes uil-ring-anim {
+			  0% {
+			    -ms-transform: rotate(0deg);
+			    -moz-transform: rotate(0deg);
+			    -webkit-transform: rotate(0deg);
+			    -o-transform: rotate(0deg);
+			    transform: rotate(0deg);
+			  }
+			  100% {
+			    -ms-transform: rotate(360deg);
+			    -moz-transform: rotate(360deg);
+			    -webkit-transform: rotate(360deg);
+			    -o-transform: rotate(360deg);
+			    transform: rotate(360deg);
+			  }
+			}
+			.uil-ring-css {
+			  background: none;
+			  position: relative;
+			  width: 200px;
+			  height: 200px;
+			}
+			.uil-ring-css > div {
+			  position: absolute;
+			  display: block;
+			  width: 160px;
+			  height: 160px;
+			  top: 20px;
+			  left: 20px;
+			  border-radius: 80px;
+			  box-shadow: 0 6px 0 0 #59ebff;
+			  -ms-animation: uil-ring-anim 1s linear infinite;
+			  -moz-animation: uil-ring-anim 1s linear infinite;
+			  -webkit-animation: uil-ring-anim 1s linear infinite;
+			  -o-animation: uil-ring-anim 1s linear infinite;
+			  animation: uil-ring-anim 1s linear infinite;
+			}
+		</style>
+	</head>
+	<body>
+		<noscript>
+			<p>No tienes javascript habilitado</p>
+		</noscript>
+		<form>
+			<div class="wrap">
+				<label>Fecha nacimiento: </label><input id="fn" type="text" name="fecha_nacimiento">
+			</div>
+			<div class="wrap">
+				<label>Código postal: </label><input id="cp" type="text" name="codigo_postal">
+			</div>
+			<div class="wrap">
+				<label>Telefono: </label><input id="tl" type="text" name="telefono">
+			</div>
+			<div class="wrap">
+				<input id="push" type="button" value="Validar datos">
+				<input id="push_p" type="button" value="Validar datos POST">
+			</div>
+		</form>
+		<form>
+			<div class="wrap">
+				<label>Usuario: </label><input id="usu" type="text" name="usuario">
+			</div>
+			<div class="wrap">
+				<input id="push_pusu" type="button" value="Validar nombre usuario">
+			</div>
+		</form>
+		<div id="insert"></div>
+	</body>
+</html>
