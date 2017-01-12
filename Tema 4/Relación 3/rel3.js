@@ -67,7 +67,7 @@ function checkAlphabetesOnly(form_field_id, highlight=true) {
 
 function checkNumericOnly(form_field_id, highlight=true) {
 	var form_field = document.getElementById(form_field_id);
-	var reg_exp = new RegExp(/^[0-9]+$/);
+	var reg_exp = new RegExp(/^[0-9]{5}$/);
 	var sucess = reg_exp.test(form_field.value);
 
 	if (!sucess && highlight) {

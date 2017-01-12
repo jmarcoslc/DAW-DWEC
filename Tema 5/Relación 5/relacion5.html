@@ -3,9 +3,10 @@
 		<meta charset="utf-8">
 		<title>Relación 5</title>
 		<script type="text/javascript" src="rel5.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></style>
 		<style type="text/css">
 			body {
-				font-family: Arial;
+				font-family: Arial, "FontAwesome";
 				margin: 0px;
 				padding: 0px;
 				background-color: 
@@ -30,6 +31,7 @@
 				margin: 15px;
 				display: inline-block;
 				vertical-align: top;
+				position: relative;
 			}
 			.fecha-posit {
 				font-size: 12px;
@@ -37,13 +39,24 @@
 				color: #AAA;
 				text-align: center;
 			}
-			.cerrar-posit {
+			.cerrar-posit, .mover-posit {
 				float: right;
 				display: block;
 				cursor: pointer;
+				width: 15px;
+				text-align: right;
+				padding: 5px;
+			}
+			.mover-posit {
+				cursor: move;
 			}
 			.cerrar-posit::after {
-				content: "X";
+				font-family: "FontAwesome";
+				content: "\f057";
+			}
+			.mover-posit::after {
+				font-family: "FontAwesome";
+				content: "\f047";
 			}
 			.posit-head::after {
 				content: "";
@@ -62,7 +75,7 @@
 				padding: 5px;
 			}
 			textarea {
-				width: 200px;
+				width: 225px;
 				height: 150px;
 			}
 			input {
@@ -77,7 +90,7 @@
 		</noscript>
 		<div id="marco">
 			<div id="controles">
-				<div id="btn-anadir" alt="Añadir nueva nota">+</div>
+				<div id="btn-anadir" alt="Añadir nueva nota">&#xf055;</div>
 			</div>
 			<div id="corcho">
 				

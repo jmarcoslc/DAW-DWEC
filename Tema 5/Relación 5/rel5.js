@@ -21,6 +21,7 @@ class Controlador {
 		this.modelo = new Modelo();
 		this.vista = new Vista(this);
 		this.cargarLocalStorage();
+		this.actualializarTiempoPosits();
 	}
 
 	buscarPosPosit(id) {
@@ -34,7 +35,6 @@ class Controlador {
 	actualizarLocalStorage() {
 		if (typeof(Storage) !== "undefined") {
 			localStorage.setItem("posits", JSON.stringify(this.modelo));
-			console.log(JSON.stringify(this.modelo));
 		}
 	}
 
@@ -74,6 +74,20 @@ class Controlador {
 	cambiarTextoPosit(texto, id) {
 		this.modelo.posits[this.buscarPosPosit(id)].texto = texto;
 		this.actualizarLocalStorage();
+	}
+
+	actualializarTiempoPosits() {
+		var self = this;
+
+		setInterval(function() {
+				for (let i=0; i<self.modelo.posits.length; i++) {
+				var hora_actual = new Date().getTime();
+				var hora_creacion = self.modelo.posits[i].fecha.getTime();
+				var diferencia = new Date(hora_actual - hora_creacion);
+
+				self.vista.actualizarTiempoPosit(self.modelo.posits[i].id, diferencia);
+			}
+		}, 1000);
 	}
 }
 
@@ -131,6 +145,13 @@ class Vista {
 			self.controlador.cambiarTextoPosit(text_a.value, id);
 		});
 
+		var mover_posit = document.createElement("span");
+		mover_posit.setAttribute("class", "mover-posit");
+		mover_posit.setAttribute("id", "mv"+id);
+		mover_posit.addEventListener("mousedown", function(e) {
+			console.log(e.target);
+		});
+
 		var cerrar_posit = document.createElement("span");
 		cerrar_posit.setAttribute("class", "cerrar-posit");
 		cerrar_posit.addEventListener("click", function() {
@@ -140,9 +161,11 @@ class Vista {
 		var fecha_posit = document.createElement("div");
 		var fecha_posit_text = document.createTextNode(fecha.toUTCString());
 		fecha_posit.setAttribute("class", "fecha-posit");
+		fecha_posit.setAttribute("id", "fecha-posit"+id);
 		fecha_posit.appendChild(fecha_posit_text);
 
 		posit_head.appendChild(title);
+		posit_head.appendChild(mover_posit);
 		posit_head.appendChild(cerrar_posit);
 		posit.appendChild(posit_head);
 		posit_wrap.appendChild(text_a);
@@ -153,6 +176,11 @@ class Vista {
 
 	cerrarPosit(id) {
 		document.getElementById("corcho").removeChild(document.getElementById(id));
+	}
+
+	actualizarTiempoPosit(id, tiempo) {
+		var posit = document.getElementById("fecha-posit"+id);
+		posit.innerHTML = "Añadido hace " + parseInt(tiempo.getHours()-1) + " horas y " + parseInt(tiempo.getMinutes()) + " minutos";
 	}
 }
 
